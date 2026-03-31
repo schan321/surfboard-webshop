@@ -36,14 +36,6 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long id, String name, String category, String description, Integer stock, Double price) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.stock = stock;
-        this.price = price;
-    }
-
     public Long getId() {
         return id;
     }
@@ -68,14 +60,6 @@ public class Product {
         this.description = description;
     }
 
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
     public Double getPrice() {
         return price;
     }
@@ -84,4 +68,27 @@ public class Product {
         this.price = price;
     }
 
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }

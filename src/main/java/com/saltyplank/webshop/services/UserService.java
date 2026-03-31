@@ -1,5 +1,8 @@
 package com.saltyplank.webshop.services;
 
+import com.saltyplank.webshop.dto.request.RegisterRequest;
+import com.saltyplank.webshop.dto.response.GebruikerDTO;
+import com.saltyplank.webshop.models.Gebruiker;
 import com.saltyplank.webshop.repository.GebruikerRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -29,5 +32,35 @@ public class UserService implements UserDetailsService {
                         )
                 ))
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
+    }
+
+    public GebruikerDTO getProfile(String email) {
+        Gebruiker gebruiker = gebruikerRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return new GebruikerDTO(
+                gebruiker.getId(),
+                gebruiker.getFirstName(),
+                gebruiker.getLastName(),
+                gebruiker.getEmail(),
+                gebruiker.getRole().name()
+        );
+    }
+
+    public GebruikerDTO updateProfile(String email, RegisterRequest request) {
+        Gebruiker gebruiker = gebruikerRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        gebruiker.setFirstName(request.getFirstName());
+        gebruiker.setLastName(request.getLastName());
+
+        gebruikerRepository.save(gebruiker);
+
+        return new GebruikerDTO(
+                gebruiker.getId(),
+                gebruiker.getFirstName(),
+                gebruiker.getLastName(),
+                gebruiker.getEmail(),
+                gebruiker.getRole().name()
+        );
     }
 }

@@ -28,12 +28,6 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(Long id, Order order, Long productId, String productName, Double productPrice, Integer quantity) {
-        this.id = id;
-        this.order = order;
-        this.quantity = quantity;
-    }
-
     public Long getId() {
         return id;
     }
@@ -57,5 +51,21 @@ public class OrderItem {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 }

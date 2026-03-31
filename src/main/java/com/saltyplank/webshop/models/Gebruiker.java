@@ -69,6 +69,10 @@ public class Gebruiker {
         this.lastName = lastName;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
     public void setRole(Role role) {
         this.role = role;
     }

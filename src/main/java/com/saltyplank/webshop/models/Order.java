@@ -23,6 +23,9 @@ public class Order {
     @Column(nullable = false)
     private Double total;
 
+    @Column(nullable = false)
+    private String shippingAddress;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private OrderStatus status = OrderStatus.PENDING;
@@ -33,11 +36,12 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, Gebruiker gebruiker, LocalDateTime createdAt, Double total, OrderStatus status, List<OrderItem> items) {
+    public Order(Long id, Gebruiker gebruiker, LocalDateTime createdAt, Double total, String shippingAddress, OrderStatus status, List<OrderItem> items) {
         this.id = id;
         this.gebruiker = gebruiker;
         this.createdAt = createdAt;
         this.total = total;
+        this.shippingAddress = shippingAddress;
         this.status = status;
         this.items = items;
     }
@@ -88,6 +92,14 @@ public class Order {
 
     public void setItems(List<OrderItem> items) {
         this.items = items;
+    }
+
+    public String getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
     }
 }
 

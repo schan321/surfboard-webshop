@@ -7,7 +7,7 @@ import { Product } from '../models/product.model';
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:8080/api/products';
+  private apiUrl = 'https://surfboard-webshop.onrender.com/api/products';
 
   constructor(private http: HttpClient) {}
 

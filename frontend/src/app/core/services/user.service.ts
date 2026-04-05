@@ -8,7 +8,7 @@ import { User } from '../models/user.model';
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:8080/api/users';
+  private apiUrl = 'https://surfboard-webshop.onrender.com/api/users';
 
   constructor(private http: HttpClient) {}
 

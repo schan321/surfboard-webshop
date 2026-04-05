@@ -8,7 +8,7 @@ import { Order } from '../models/order.model';
 })
 export class OrderService {
 
-  private apiUrl = 'http://localhost:8080/api/orders';
+  private apiUrl = 'https://surfboard-webshop.onrender.com/api/orders';
 
   constructor(private http: HttpClient) {}
 

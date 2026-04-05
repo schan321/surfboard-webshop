@@ -1,0 +1,58 @@
+<main class="product-detail-page">
+  @if (loading) {
+    <p class="loading">{{ 'common.loading' | translate }}</p>
+  } @else if (product) {
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a routerLink="/">{{ 'nav.products' | translate }}</a>
+      <span aria-hidden="true"> / </span>
+      <span>{{ product.name }}</span>
+    </nav>
+
+    <article class="product-detail">
+      <div class="product-image">
+        <img
+          [src]="product.imageUrl"
+          [alt]="product.name"
+          (error)="onImageError($event)"
+        />
+      </div>
+
+      <section class="product-info">
+        <p class="category">{{ product.category.name }}</p>
+        <h1>{{ product.name }}</h1>
+        <p class="price">€{{ product.price.toFixed(2) }}</p>
+        <p class="description">{{ product.description }}</p>
+
+        <div class="stock" [class.low]="product.stock < 5">
+          @if (product.stock > 0) {
+            <span>✓ {{ 'product.in_stock' | translate: { count: product.stock } }}</span>
+          } @else {
+            <span class="out">✕ {{ 'product.out_of_stock' | translate }}</span>
+          }
+        </div>
+
+        @if (product.stock > 0) {
+          <div class="quantity-selector" [attr.aria-label]="'product.quantity' | translate">
+            <button
+              (click)="decreaseQuantity()"
+              [attr.aria-label]="'product.decrease_quantity' | translate">-</button>
+            <span aria-live="polite">{{ quantity }}</span>
+            <button
+              (click)="increaseQuantity()"
+              [attr.aria-label]="'product.increase_quantity' | translate">+</button>
+          </div>
+
+          <button
+            class="add-to-cart-btn"
+            (click)="addToCart()"
+            [class.added]="added"
+            aria-live="polite">
+            {{ added ? ('product.added_to_cart' | translate) : ('product.add_to_cart' | translate) }}
+          </button>
+        }
+
+        <a routerLink="/" class="back-link">{{ 'product.back_to_products' | translate }}</a>
+      </section>
+    </article>
+  }
+</main>

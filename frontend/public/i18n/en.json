@@ -1,0 +1,131 @@
+{
+  "nav": {
+    "products": "Products",
+    "cart": "Cart",
+    "orders": "My Orders",
+    "profile": "Profile",
+    "admin": "Admin",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "home": {
+    "hero_title": "Ride The Wave",
+    "hero_subtitle": "Premium surfboards for every level",
+    "shop_now": "SHOP NOW",
+    "search_placeholder": "Search surfboards...",
+    "categories": "Categories",
+    "all_boards": "All Boards",
+    "products_found": "products found",
+    "search": "Search"
+  },
+  "product": {
+    "add_to_cart": "Add to Cart",
+    "added_to_cart": "Added to Cart!",
+    "in_stock": "In stock ({{count}} available)",
+    "out_of_stock": "Out of stock",
+    "back_to_products": "← Back to products",
+    "quantity": "Quantity",
+    "decrease_quantity": "Decrease quantity",
+    "increase_quantity": "Increase quantity"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "continue_shopping": "Continue Shopping",
+    "order_summary": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Free",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "qty": "Qty",
+    "free": "Free",
+    "remove": "Remove"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "shipping_details": "Shipping Details",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "email": "Email",
+    "street": "Street and house number",
+    "postal_code": "Postal code",
+    "city": "City",
+    "country": "Country",
+    "place_order": "Place Order",
+    "placing_order": "Placing order...",
+    "back_to_cart": "← Back to cart"
+  },
+  "orders": {
+    "title": "My Orders",
+    "empty": "You haven't placed any orders yet.",
+    "start_shopping": "Start Shopping",
+    "order_number": "Order #{{id}}",
+    "total": "Total",
+    "history": "Order history",
+    "status": "Order status: {{status}}",
+    "items": "Order items"
+  },
+  "profile": {
+    "title": "My Profile",
+    "edit_profile": "Edit Profile",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "email": "Email",
+    "email_hint": "Email cannot be changed",
+    "save": "Save Changes",
+    "saving": "Saving...",
+    "success": "Profile updated successfully!"
+  },
+  "auth": {
+    "login_title": "Welcome back",
+    "login_subtitle": "Log in to your account",
+    "register_title": "Create account",
+    "register_subtitle": "Join the Salty Plank community",
+    "email": "Email",
+    "password": "Password",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "login_btn": "Login",
+    "logging_in": "Logging in...",
+    "register_btn": "Register",
+    "creating_account": "Creating account...",
+    "no_account": "Don't have an account?",
+    "register_here": "Register here",
+    "have_account": "Already have an account?",
+    "login_here": "Login here",
+    "password_hint": "Min. 8 characters, uppercase, number and special character"
+  },
+  "footer": {
+    "tagline": "Premium surfboards for every level.",
+    "shop": "Shop",
+    "all_products": "All Products",
+    "account": "Account",
+    "contact": "Contact"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "add_product": "Add Product",
+    "edit_product": "Edit Product",
+    "create_product": "Create Product",
+    "save_changes": "Save Changes",
+    "product_form": "Product form",
+    "products_overview": "Products overview",
+    "name": "Name",
+    "description": "Description",
+    "price": "Price (€)",
+    "stock": "Stock",
+    "category": "Category",
+    "image": "Image",
+    "actions": "Actions",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "common": {
+    "loading": "Loading...",
+    "no_products": "No products found.",
+    "search": "Search",
+    "cancel": "Cancel",
+    "close": "Close"
+  }
+}

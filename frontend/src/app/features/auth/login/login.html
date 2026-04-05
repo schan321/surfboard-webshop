@@ -1,0 +1,50 @@
+<main class="auth-page">
+  <article class="auth-card">
+    <header class="auth-header">
+      <img src="salty_plank_logo.png" alt="Salty Plank" class="auth-logo"/>
+      <h1>{{ 'auth.login_title' | translate }}</h1>
+      <p>{{ 'auth.login_subtitle' | translate }}</p>
+    </header>
+
+    <form (ngSubmit)="onSubmit()" novalidate>
+      @if (error) {
+        <div class="error-message" role="alert">{{ error }}</div>
+      }
+
+      <div class="form-group">
+        <label for="email">{{ 'auth.email' | translate }}</label>
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="your@email.com"
+          autocomplete="email"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">{{ 'auth.password' | translate }}</label>
+        <input
+          id="password"
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          [placeholder]="'auth.password' | translate"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+
+      <button type="submit" [disabled]="loading" class="submit-btn">
+        {{ loading ? ('auth.logging_in' | translate) : ('auth.login_btn' | translate) }}
+      </button>
+    </form>
+
+    <p class="switch-auth">
+      {{ 'auth.no_account' | translate }}
+      <a routerLink="/auth/register">{{ 'auth.register_here' | translate }}</a>
+    </p>
+  </article>
+</main>

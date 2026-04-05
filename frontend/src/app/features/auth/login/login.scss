@@ -1,0 +1,131 @@
+.auth-page {
+  min-height: 100vh;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+
+  .auth-card {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 8px 32px rgba(0, 105, 148, 0.12);
+
+    @media (max-width: 768px) {
+      padding: 2rem 1.5rem;
+      border-radius: 16px;
+    }
+
+    .auth-header {
+      text-align: center;
+      margin-bottom: 2rem;
+
+      .auth-logo {
+        height: 60px;
+        width: auto;
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        color: #1A1A2E;
+        font-family: 'Bebas Neue', sans-serif;
+        margin-bottom: 0.25rem;
+        letter-spacing: 1px;
+      }
+
+      p {
+        color: #666;
+        font-size: 0.95rem;
+      }
+    }
+
+    .error-message {
+      background: #FFE5E5;
+      color: #CC0000;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #1A1A2E;
+        font-size: 0.95rem;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border: 2px solid #E0E0E0;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-family: 'Open Sans', sans-serif;
+        box-sizing: border-box;
+        transition: border-color 0.2s;
+        outline: none;
+
+        &:focus {
+          border-color: #006994;
+          box-shadow: 0 0 0 3px rgba(0, 105, 148, 0.1);
+        }
+      }
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: #006994;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Open Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.5rem;
+
+      &:hover:not(:disabled) {
+        background: #FF6B9D;
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+    }
+
+    .switch-auth {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: #666;
+      font-size: 0.95rem;
+
+      a {
+        color: #006994;
+        font-weight: 600;
+        text-decoration: none;
+
+        &:hover {
+          color: #FF6B9D;
+        }
+      }
+    }
+  }
+}

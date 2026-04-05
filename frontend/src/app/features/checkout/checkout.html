@@ -1,0 +1,146 @@
+<main class="checkout-page">
+  <h1>{{ 'checkout.title' | translate }}</h1>
+
+  <div class="checkout-content">
+    <section class="shipping-form">
+      <h2>{{ 'checkout.shipping_details' | translate }}</h2>
+
+      @if (error) {
+        <div class="error-message" role="alert">{{ error }}</div>
+      }
+
+      <form (ngSubmit)="placeOrder()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">{{ 'checkout.first_name' | translate }}</label>
+            <input
+              id="firstName"
+              type="text"
+              [(ngModel)]="firstName"
+              name="firstName"
+              [placeholder]="'checkout.first_name' | translate"
+              autocomplete="given-name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="lastName">{{ 'checkout.last_name' | translate }}</label>
+            <input
+              id="lastName"
+              type="text"
+              [(ngModel)]="lastName"
+              name="lastName"
+              [placeholder]="'checkout.last_name' | translate"
+              autocomplete="family-name"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">{{ 'checkout.email' | translate }}</label>
+          <input
+            id="email"
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="your@email.com"
+            autocomplete="email"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="street">{{ 'checkout.street' | translate }}</label>
+          <input
+            id="street"
+            type="text"
+            [(ngModel)]="street"
+            name="street"
+            placeholder="Surfstraat 1"
+            autocomplete="street-address"
+            required
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="postalCode">{{ 'checkout.postal_code' | translate }}</label>
+            <input
+              id="postalCode"
+              type="text"
+              [(ngModel)]="postalCode"
+              name="postalCode"
+              placeholder="1234 AB"
+              autocomplete="postal-code"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="city">{{ 'checkout.city' | translate }}</label>
+            <input
+              id="city"
+              type="text"
+              [(ngModel)]="city"
+              name="city"
+              [placeholder]="'checkout.city' | translate"
+              autocomplete="address-level2"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="country">{{ 'checkout.country' | translate }}</label>
+          <input
+            id="country"
+            type="text"
+            [(ngModel)]="country"
+            name="country"
+            [placeholder]="'checkout.country' | translate"
+            autocomplete="country-name"
+            required
+          />
+        </div>
+
+        <button type="submit" [disabled]="loading" class="order-btn">
+          {{ loading ? ('checkout.placing_order' | translate) : ('checkout.place_order' | translate) }}
+        </button>
+      </form>
+
+      <a routerLink="/cart" class="back-link">{{ 'checkout.back_to_cart' | translate }}</a>
+    </section>
+
+    <aside class="order-summary">
+      <h2>{{ 'cart.order_summary' | translate }}</h2>
+
+      <ul class="summary-items" [attr.aria-label]="'cart.title' | translate">
+        @for (item of cartItems; track item.productId) {
+          <li class="summary-item">
+            <img [src]="item.imageUrl" [alt]="item.productName"/>
+            <div class="item-info">
+              <p class="item-name">{{ item.productName }}</p>
+              <p class="item-qty">{{ 'cart.qty' | translate }}: {{ item.quantity }}</p>
+            </div>
+            <p class="item-price">€{{ (item.productPrice * item.quantity).toFixed(2) }}</p>
+          </li>
+        }
+      </ul>
+
+      <div class="summary-totals" [attr.aria-label]="'cart.order_summary' | translate">
+        <div class="summary-row">
+          <span>{{ 'cart.subtotal' | translate }}</span>
+          <span>€{{ getTotal().toFixed(2) }}</span>
+        </div>
+        <div class="summary-row">
+          <span>{{ 'cart.shipping' | translate }}</span>
+          <span>{{ 'cart.free' | translate }}</span>
+        </div>
+        <div class="summary-row total">
+          <span>{{ 'cart.total' | translate }}</span>
+          <span>€{{ getTotal().toFixed(2) }}</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>

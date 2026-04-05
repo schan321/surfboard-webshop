@@ -1,0 +1,159 @@
+<main class="admin-page">
+  <header class="admin-header">
+    <h1>{{ 'admin.title' | translate }}</h1>
+    <button class="create-btn" (click)="openCreateForm()">+ {{ 'admin.add_product' | translate }}</button>
+  </header>
+
+  @if (success) {
+    <div class="success-message" role="alert">{{ success }}</div>
+  }
+  @if (error) {
+    <div class="error-message" role="alert">{{ error }}</div>
+  }
+
+  @if (showForm) {
+    <div class="modal-overlay" (click)="closeForm()" role="dialog" aria-modal="true" [attr.aria-label]="'admin.product_form' | translate">
+      <article class="modal" (click)="$event.stopPropagation()">
+        <header class="modal-header">
+          <h2>{{ editingProduct ? ('admin.edit_product' | translate) : ('admin.add_product' | translate) }}</h2>
+          <button class="close-btn" (click)="closeForm()" [attr.aria-label]="'common.close' | translate">✕</button>
+        </header>
+
+        <form (ngSubmit)="save()" novalidate>
+          <div class="form-group">
+            <label for="productName">{{ 'admin.name' | translate }}</label>
+            <input
+              id="productName"
+              type="text"
+              [(ngModel)]="form.name"
+              name="name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="productDescription">{{ 'admin.description' | translate }}</label>
+            <textarea
+              id="productDescription"
+              [(ngModel)]="form.description"
+              name="description"
+              rows="3">
+            </textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="productPrice">{{ 'admin.price' | translate }}</label>
+              <input
+                id="productPrice"
+                type="number"
+                [(ngModel)]="form.price"
+                name="price"
+                min="0"
+                step="0.01"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="productStock">{{ 'admin.stock' | translate }}</label>
+              <input
+                id="productStock"
+                type="number"
+                [(ngModel)]="form.stock"
+                name="stock"
+                min="0"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="productCategory">{{ 'admin.category' | translate }}</label>
+            <select
+              id="productCategory"
+              [(ngModel)]="form.categoryId"
+              name="categoryId">
+              @for (cat of categories; track cat.id) {
+                <option [value]="cat.id">{{ cat.name }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="productImage">{{ 'admin.image' | translate }}</label>
+            <input
+              id="productImage"
+              type="text"
+              [(ngModel)]="form.imageUrl"
+              name="imageUrl"
+              placeholder="shortboard1.jpg"
+            />
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="cancel-btn" (click)="closeForm()">
+              {{ 'common.cancel' | translate }}
+            </button>
+            <button type="submit" class="save-btn">
+              {{ editingProduct ? ('admin.save_changes' | translate) : ('admin.create_product' | translate) }}
+            </button>
+          </div>
+        </form>
+      </article>
+    </div>
+  }
+
+  @if (loading) {
+    <p class="loading">{{ 'common.loading' | translate }}</p>
+  } @else {
+    <section class="products-table" [attr.aria-label]="'admin.products_overview' | translate">
+      <table>
+        <thead>
+        <tr>
+          <th scope="col">{{ 'admin.image' | translate }}</th>
+          <th scope="col">{{ 'admin.name' | translate }}</th>
+          <th scope="col">{{ 'admin.category' | translate }}</th>
+          <th scope="col">{{ 'admin.price' | translate }}</th>
+          <th scope="col">{{ 'admin.stock' | translate }}</th>
+          <th scope="col">{{ 'admin.actions' | translate }}</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (product of products; track product.id) {
+            <tr>
+              <td>
+                <img
+                  [src]="product.imageUrl"
+                  [alt]="product.name"
+                  class="product-thumb"
+                />
+              </td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.category.name }}</td>
+              <td>€{{ product.price.toFixed(2) }}</td>
+              <td>
+                <span [class]="product.stock < 5 ? 'low-stock' : 'in-stock'">
+                  {{ product.stock }}
+                </span>
+              </td>
+              <td class="actions">
+                <button
+                  class="edit-btn"
+                  (click)="openEditForm(product)"
+                  [attr.aria-label]="('admin.edit' | translate) + ' ' + product.name">
+                  {{ 'admin.edit' | translate }}
+                </button>
+                <button
+                  class="delete-btn"
+                  (click)="delete(product)"
+                  [attr.aria-label]="('admin.delete' | translate) + ' ' + product.name">
+                  {{ 'admin.delete' | translate }}
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+  }
+</main>

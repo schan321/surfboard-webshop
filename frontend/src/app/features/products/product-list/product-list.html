@@ -1,0 +1,80 @@
+<section class="product-list">
+  @if (toastMessage) {
+    <div class="toast" role="alert">{{ toastMessage }}</div>
+  }
+
+  <header class="hero-banner">
+    <img src="banner.png" alt="Salty Plank - Ride the Wave" />
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>{{ 'home.hero_title' | translate }}</h1>
+        <p>{{ 'home.hero_subtitle' | translate }}</p>
+        <button (click)="scrollToProducts()">{{ 'home.shop_now' | translate }} →</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="shop-layout">
+    <aside class="sidebar">
+      <section class="sidebar-section">
+        <h3>{{ 'home.search' | translate }}</h3>
+        <input
+          type="text"
+          [placeholder]="'home.search_placeholder' | translate"
+          (input)="onSearch($event)"
+          class="search-input"
+          [attr.aria-label]="'home.search_placeholder' | translate"
+        />
+      </section>
+
+      <section class="sidebar-section">
+        <h3>{{ 'home.categories' | translate }}</h3>
+        <nav class="category-list" [attr.aria-label]="'home.categories' | translate">
+          <button
+            [class.active]="selectedCategory === null"
+            (click)="selectCategory(null)">
+            {{ 'home.all_boards' | translate }}
+          </button>
+          @for (category of categories; track category.id) {
+            <button
+              [class.active]="selectedCategory === category.id"
+              (click)="selectCategory(category.id)">
+              {{ category.name }}
+            </button>
+          }
+        </nav>
+      </section>
+    </aside>
+
+    <main class="products-section">
+      <div class="products-header">
+        <p>{{ products.length }} {{ 'home.products_found' | translate }}</p>
+      </div>
+
+      <div class="products-grid">
+        @if (loading) {
+          <p class="loading">{{ 'common.loading' | translate }}</p>
+        } @else if (products.length === 0) {
+          <p class="no-products">{{ 'common.no_products' | translate }}</p>
+        } @else {
+          @for (product of products; track product.id) {
+            <article class="product-card" (click)="goToProduct(product.id)">
+              <div class="image-wrapper">
+                <img
+                  [src]="product.imageUrl"
+                  [alt]="product.name"
+                  (error)="onImageError($event)"
+                />
+              </div>
+              <div class="product-info">
+                <p class="category">{{ product.category.name }}</p>
+                <h3>{{ product.name }}</h3>
+                <p class="price">€{{ product.price.toFixed(2) }}</p>
+              </div>
+            </article>
+          }
+        }
+      </div>
+    </main>
+  </div>
+</section>

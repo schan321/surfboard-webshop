@@ -1,0 +1,79 @@
+<main class="auth-page">
+  <article class="auth-card">
+    <header class="auth-header">
+      <img src="salty_plank_logo.png" alt="Salty Plank" class="auth-logo"/>
+      <h1>{{ 'auth.register_title' | translate }}</h1>
+      <p>{{ 'auth.register_subtitle' | translate }}</p>
+    </header>
+
+    <form (ngSubmit)="onSubmit()" novalidate>
+      @if (error) {
+        <div class="error-message" role="alert">{{ error }}</div>
+      }
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">{{ 'auth.first_name' | translate }}</label>
+          <input
+            id="firstName"
+            type="text"
+            [(ngModel)]="firstName"
+            name="firstName"
+            [placeholder]="'auth.first_name' | translate"
+            autocomplete="given-name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">{{ 'auth.last_name' | translate }}</label>
+          <input
+            id="lastName"
+            type="text"
+            [(ngModel)]="lastName"
+            name="lastName"
+            [placeholder]="'auth.last_name' | translate"
+            autocomplete="family-name"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">{{ 'auth.email' | translate }}</label>
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="your@email.com"
+          autocomplete="email"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">{{ 'auth.password' | translate }}</label>
+        <input
+          id="password"
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          [placeholder]="'auth.password_hint' | translate"
+          autocomplete="new-password"
+          required
+          minlength="8"
+        />
+      </div>
+
+      <button type="submit" [disabled]="loading" class="submit-btn">
+        {{ loading ? ('auth.creating_account' | translate) : ('auth.register_btn' | translate) }}
+      </button>
+    </form>
+
+    <p class="switch-auth">
+      {{ 'auth.have_account' | translate }}
+      <a routerLink="/auth/login">{{ 'auth.login_here' | translate }}</a>
+    </p>
+  </article>
+</main>

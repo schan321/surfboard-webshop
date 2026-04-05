@@ -1,0 +1,70 @@
+<main class="cart-page">
+  <h1>{{ 'cart.title' | translate }}</h1>
+
+  @if (cartItems.length === 0) {
+    <section class="empty-cart">
+      <p>{{ 'cart.empty' | translate }}</p>
+      <a routerLink="/" class="continue-btn">{{ 'cart.continue_shopping' | translate }}</a>
+    </section>
+  } @else {
+    <div class="cart-content">
+      <section class="cart-items" [attr.aria-label]="'cart.title' | translate">
+        @for (item of cartItems; track item.productId) {
+          <article class="cart-item">
+            <img
+              [src]="item.imageUrl"
+              [alt]="item.productName"
+              (error)="onImageError($event)"
+            />
+            <div class="item-details">
+              <h3>{{ item.productName }}</h3>
+              <p class="price">€{{ item.productPrice.toFixed(2) }}</p>
+            </div>
+            <div class="item-quantity">
+              <label [for]="'qty-' + item.productId" class="visually-hidden">
+                {{ 'product.quantity' | translate }} {{ item.productName }}
+              </label>
+              <input
+                [id]="'qty-' + item.productId"
+                type="number"
+                [value]="item.quantity"
+                (change)="updateQuantity(item.productId, $event)"
+                min="1"
+                [attr.aria-label]="'product.quantity' | translate"
+              />
+            </div>
+            <p class="item-subtotal">
+              €{{ (item.productPrice * item.quantity).toFixed(2) }}
+            </p>
+            <button
+              class="remove-btn"
+              (click)="removeItem(item.productId)"
+              [attr.aria-label]="('cart.remove' | translate) + ' ' + item.productName">
+              ✕
+            </button>
+          </article>
+        }
+      </section>
+
+      <aside class="cart-summary">
+        <h2>{{ 'cart.order_summary' | translate }}</h2>
+        <div class="summary-row">
+          <span>{{ 'cart.subtotal' | translate }}</span>
+          <span>€{{ getTotal().toFixed(2) }}</span>
+        </div>
+        <div class="summary-row">
+          <span>{{ 'cart.shipping' | translate }}</span>
+          <span>{{ 'cart.free' | translate }}</span>
+        </div>
+        <div class="summary-row total">
+          <span>{{ 'cart.total' | translate }}</span>
+          <span>€{{ getTotal().toFixed(2) }}</span>
+        </div>
+        <button class="checkout-btn" (click)="checkout()">
+          {{ 'cart.checkout' | translate }}
+        </button>
+        <a routerLink="/" class="continue-link">{{ 'cart.continue_shopping' | translate }}</a>
+      </aside>
+    </div>
+  }
+</main>

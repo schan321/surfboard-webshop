@@ -1,0 +1,227 @@
+.profile-page {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #1A1A2E;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    letter-spacing: 1px;
+
+    @media (max-width: 768px) {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .loading {
+    color: #666;
+    text-align: center;
+    padding: 3rem;
+  }
+
+  .profile-content {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  .profile-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    text-align: center;
+    height: fit-content;
+
+    @media (max-width: 768px) {
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-align: left;
+    }
+
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      background: #006994;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      font-family: 'Open Sans', sans-serif;
+      margin: 0 auto 1rem;
+      flex-shrink: 0;
+
+      @media (max-width: 768px) {
+        margin: 0;
+        width: 60px;
+        height: 60px;
+        font-size: 1.4rem;
+      }
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      color: #1A1A2E;
+      margin-bottom: 0.25rem;
+      letter-spacing: 1px;
+    }
+
+    .email {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+
+      @media (max-width: 768px) {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    .role {
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+
+      &.user {
+        background: #D1ECF1;
+        color: #0C5460;
+      }
+
+      &.admin {
+        background: #FFD166;
+        color: #1A1A2E;
+      }
+    }
+  }
+
+  .profile-form {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+
+    @media (max-width: 768px) {
+      padding: 1.5rem;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      color: #1A1A2E;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .success-message {
+      background: #D4EDDA;
+      color: #155724;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .error-message {
+      background: #FFE5E5;
+      color: #CC0000;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #1A1A2E;
+        font-size: 0.95rem;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border: 2px solid #E0E0E0;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-family: 'Open Sans', sans-serif;
+        box-sizing: border-box;
+        outline: none;
+        transition: border-color 0.2s;
+
+        &:focus {
+          border-color: #006994;
+          box-shadow: 0 0 0 3px rgba(0, 105, 148, 0.1);
+        }
+
+        &:disabled {
+          background: #F5F5F5;
+          color: #999;
+          cursor: not-allowed;
+        }
+      }
+
+      small {
+        color: #999;
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+        display: block;
+      }
+    }
+
+    .save-btn {
+      padding: 1rem 2rem;
+      background: #006994;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+
+      &:hover:not(:disabled) {
+        background: #FF6B9D;
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

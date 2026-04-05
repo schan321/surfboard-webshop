@@ -1,0 +1,76 @@
+<main class="profile-page">
+  <h1>My Profile</h1>
+
+  @if (loading) {
+    <p class="loading">Loading profile...</p>
+  } @else {
+    <div class="profile-content">
+      <aside class="profile-card">
+        <div class="profile-avatar" aria-hidden="true">
+          {{ user?.firstName?.charAt(0) }}{{ user?.lastName?.charAt(0) }}
+        </div>
+        <h2>{{ user?.firstName }} {{ user?.lastName }}</h2>
+        <p class="email">{{ user?.email }}</p>
+        <span class="role" [class]="user?.role?.toLowerCase()">
+          {{ user?.role }}
+        </span>
+      </aside>
+
+      <section class="profile-form">
+        <h2>Edit Profile</h2>
+
+        @if (success) {
+          <div class="success-message" role="alert">
+            Profile updated successfully!
+          </div>
+        }
+        @if (error) {
+          <div class="error-message" role="alert">{{ error }}</div>
+        }
+
+        <form (ngSubmit)="save()">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First name</label>
+              <input
+                id="firstName"
+                type="text"
+                [(ngModel)]="firstName"
+                name="firstName"
+                required
+                autocomplete="given-name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last name</label>
+              <input
+                id="lastName"
+                type="text"
+                [(ngModel)]="lastName"
+                name="lastName"
+                required
+                autocomplete="family-name"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              [value]="user?.email"
+              disabled
+              aria-disabled="true"
+            />
+            <small>Email cannot be changed</small>
+          </div>
+
+          <button type="submit" [disabled]="saving" class="save-btn">
+            {{ saving ? 'Saving...' : 'Save Changes' }}
+          </button>
+        </form>
+      </section>
+    </div>
+  }
+</main>

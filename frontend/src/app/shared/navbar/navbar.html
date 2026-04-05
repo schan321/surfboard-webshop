@@ -1,0 +1,50 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/">
+      <img src="salty_plank_logo.png" alt="Salty Plank" class="logo"/>
+    </a>
+  </div>
+
+  <button
+    class="burger"
+    (click)="toggleMenu()"
+    aria-label="Toggle navigation menu"
+    [attr.aria-expanded]="menuOpen">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="navbar-menu" [class.open]="menuOpen">
+    <a routerLink="/" (click)="closeMenu()">{{ 'nav.products' | translate }}</a>
+    <a routerLink="/cart" (click)="closeMenu()">
+      {{ 'nav.cart' | translate }} ({{ cartCount }})
+    </a>
+
+    @if (isLoggedIn) {
+      <a routerLink="/orders" (click)="closeMenu()">{{ 'nav.orders' | translate }}</a>
+      <a routerLink="/profile" (click)="closeMenu()">{{ 'nav.profile' | translate }}</a>
+      @if (isAdmin) {
+        <a routerLink="/admin" (click)="closeMenu()">{{ 'nav.admin' | translate }}</a>
+      }
+      <button (click)="logout()">{{ 'nav.logout' | translate }}</button>
+    } @else {
+      <a routerLink="/auth/login" (click)="closeMenu()">{{ 'nav.login' | translate }}</a>
+      <a routerLink="/auth/register" (click)="closeMenu()">{{ 'nav.register' | translate }}</a>
+    }
+
+    <div class="lang-switcher">
+      <button
+        [class.active]="currentLang === 'nl'"
+        (click)="switchLanguage('nl')">
+        NL
+      </button>
+      <span>|</span>
+      <button
+        [class.active]="currentLang === 'en'"
+        (click)="switchLanguage('en')">
+        EN
+      </button>
+    </div>
+  </div>
+</nav>

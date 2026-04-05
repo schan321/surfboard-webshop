@@ -1,0 +1,53 @@
+<main class="orders-page">
+  <h1>{{ 'orders.title' | translate }}</h1>
+
+  @if (loading) {
+    <p class="loading">{{ 'common.loading' | translate }}</p>
+  } @else if (orders.length === 0) {
+    <section class="empty-orders">
+      <p>{{ 'orders.empty' | translate }}</p>
+      <a routerLink="/" class="shop-btn">{{ 'orders.start_shopping' | translate }}</a>
+    </section>
+  } @else {
+    <section class="orders-list" [attr.aria-label]="'orders.history' | translate">
+      @for (order of orders; track order.id) {
+        <article class="order-card">
+          <header class="order-header">
+            <div>
+              <h3>{{ 'orders.order_number' | translate: { id: order.id } }}</h3>
+              <p class="order-date">
+                <time [attr.datetime]="order.createdAt">
+                  {{ order.createdAt | date:'dd-MM-yyyy' }}
+                </time>
+              </p>
+            </div>
+            <div
+              class="order-status"
+              [class]="order.status.toLowerCase()"
+              role="status"
+              [attr.aria-label]="'orders.status' | translate: { status: order.status }">
+              {{ order.status }}
+            </div>
+          </header>
+
+          <ul class="order-items" [attr.aria-label]="'orders.items' | translate">
+            @for (item of order.items; track item.id) {
+              <li class="order-item">
+                <span class="item-name">{{ item.productName }}</span>
+                <span class="item-qty">x{{ item.quantity }}</span>
+                <span class="item-price">€{{ item.unitPrice.toFixed(2) }}</span>
+              </li>
+            }
+          </ul>
+
+          <footer class="order-footer">
+            <p class="shipping">{{ order.shippingAddress }}</p>
+            <p class="order-total">
+              {{ 'orders.total' | translate }}: <strong>€{{ order.total.toFixed(2) }}</strong>
+            </p>
+          </footer>
+        </article>
+      }
+    </section>
+  }
+</main>

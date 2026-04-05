@@ -1,0 +1,308 @@
+.admin-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    @media (max-width: 768px) {
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      color: #1A1A2E;
+      font-size: 2rem;
+      letter-spacing: 1px;
+
+      @media (max-width: 768px) {
+        font-size: 1.6rem;
+      }
+    }
+
+    .create-btn {
+      background: #006994;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s;
+      white-space: nowrap;
+
+      @media (max-width: 768px) {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      &:hover {
+        background: #FF6B9D;
+      }
+    }
+  }
+
+  .success-message {
+    background: #D4EDDA;
+    color: #155724;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .error-message {
+    background: #FFE5E5;
+    color: #CC0000;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .loading {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+    box-sizing: border-box;
+
+    .modal {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+
+      @media (max-width: 768px) {
+        padding: 1.5rem;
+        border-radius: 12px;
+        max-height: 95vh;
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+
+        h2 {
+          font-family: 'Bebas Neue', sans-serif;
+          color: #1A1A2E;
+          letter-spacing: 1px;
+        }
+
+        .close-btn {
+          background: none;
+          border: none;
+          font-size: 1.2rem;
+          cursor: pointer;
+          color: #666;
+
+          &:hover {
+            color: #FF6B9D;
+          }
+        }
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .form-group {
+        margin-bottom: 1.25rem;
+
+        label {
+          display: block;
+          margin-bottom: 0.5rem;
+          font-weight: 600;
+          color: #1A1A2E;
+          font-size: 0.95rem;
+        }
+
+        input, textarea, select {
+          width: 100%;
+          padding: 0.85rem 1rem;
+          border: 2px solid #E0E0E0;
+          border-radius: 10px;
+          font-size: 1rem;
+          font-family: 'Open Sans', sans-serif;
+          box-sizing: border-box;
+          outline: none;
+          transition: border-color 0.2s;
+
+          &:focus {
+            border-color: #006994;
+            box-shadow: 0 0 0 3px rgba(0, 105, 148, 0.1);
+          }
+        }
+
+        textarea {
+          resize: vertical;
+        }
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        margin-top: 1rem;
+
+        @media (max-width: 768px) {
+          flex-direction: column;
+        }
+
+        .cancel-btn {
+          padding: 0.75rem 1.5rem;
+          background: white;
+          border: 2px solid #E0E0E0;
+          border-radius: 30px;
+          cursor: pointer;
+          font-weight: 600;
+
+          &:hover {
+            border-color: #FF6B9D;
+            color: #FF6B9D;
+          }
+        }
+
+        .save-btn {
+          padding: 0.75rem 1.5rem;
+          background: #006994;
+          color: white;
+          border: none;
+          border-radius: 30px;
+          cursor: pointer;
+          font-weight: 700;
+          transition: all 0.2s;
+
+          &:hover {
+            background: #FF6B9D;
+          }
+        }
+      }
+    }
+  }
+
+  .products-table {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    overflow-x: auto;
+
+    @media (max-width: 768px) {
+      padding: 1rem;
+      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+
+      th {
+        text-align: left;
+        padding: 1rem;
+        font-family: 'Bebas Neue', sans-serif;
+        color: #1A1A2E;
+        border-bottom: 2px solid #F0F0F0;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      td {
+        padding: 1rem;
+        border-bottom: 1px solid #F8F8F8;
+        color: #1A1A2E;
+        vertical-align: middle;
+      }
+
+      .product-thumb {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        background: #F0F8FF;
+        border-radius: 8px;
+      }
+
+      .in-stock {
+        color: #28a745;
+        font-weight: 700;
+      }
+
+      .low-stock {
+        color: #ff9800;
+        font-weight: 700;
+      }
+
+      .actions {
+        display: flex;
+        gap: 0.5rem;
+
+        .edit-btn {
+          padding: 0.4rem 1rem;
+          background: #006994;
+          color: white;
+          border: none;
+          border-radius: 20px;
+          cursor: pointer;
+          font-size: 0.85rem;
+          font-weight: 600;
+          transition: all 0.2s;
+
+          &:hover {
+            background: #FFD166;
+            color: #1A1A2E;
+          }
+        }
+
+        .delete-btn {
+          padding: 0.4rem 1rem;
+          background: #FFE5E5;
+          color: #CC0000;
+          border: none;
+          border-radius: 20px;
+          cursor: pointer;
+          font-size: 0.85rem;
+          font-weight: 600;
+          transition: all 0.2s;
+
+          &:hover {
+            background: #CC0000;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "nav": {
+    "products": "Producten",
+    "cart": "Winkelwagen",
+    "orders": "Mijn Bestellingen",
+    "profile": "Profiel",
+    "admin": "Beheer",
+    "login": "Inloggen",
+    "register": "Registreren",
+    "logout": "Uitloggen"
+  },
+  "home": {
+    "hero_title": "Rijd De Golf",
+    "hero_subtitle": "Premium surfboards voor elk niveau",
+    "shop_now": "BEKIJK NU",
+    "search_placeholder": "Zoek surfboards...",
+    "categories": "Categorieën",
+    "all_boards": "Alle Boards",
+    "products_found": "producten gevonden",
+    "search": "Zoeken"
+  },
+  "product": {
+    "add_to_cart": "Voeg toe aan winkelwagen",
+    "added_to_cart": "Toegevoegd!",
+    "in_stock": "Op voorraad ({{count}} beschikbaar)",
+    "out_of_stock": "Niet op voorraad",
+    "back_to_products": "← Terug naar producten",
+    "quantity": "Aantal",
+    "decrease_quantity": "Aantal verminderen",
+    "increase_quantity": "Aantal verhogen"
+  },
+  "cart": {
+    "title": "Uw Winkelwagen",
+    "empty": "Uw winkelwagen is leeg",
+    "continue_shopping": "Verder winkelen",
+    "order_summary": "Besteloverzicht",
+    "subtotal": "Subtotaal",
+    "shipping": "Gratis",
+    "total": "Totaal",
+    "checkout": "Afrekenen",
+    "qty": "Aantal",
+    "free": "Gratis",
+    "remove": "Verwijderen"
+  },
+  "checkout": {
+    "title": "Afrekenen",
+    "shipping_details": "Verzendgegevens",
+    "first_name": "Voornaam",
+    "last_name": "Achternaam",
+    "email": "E-mailadres",
+    "street": "Straat en huisnummer",
+    "postal_code": "Postcode",
+    "city": "Stad",
+    "country": "Land",
+    "place_order": "Bestelling plaatsen",
+    "placing_order": "Bestelling wordt geplaatst...",
+    "back_to_cart": "← Terug naar winkelwagen"
+  },
+  "orders": {
+    "title": "Mijn Bestellingen",
+    "empty": "U heeft nog geen bestellingen geplaatst.",
+    "start_shopping": "Begin met winkelen",
+    "order_number": "Bestelling #{{id}}",
+    "total": "Totaal",
+    "history": "Bestelgeschiedenis",
+    "status": "Bestelstatus: {{status}}",
+    "items": "Bestelde artikelen"
+  },
+  "profile": {
+    "title": "Mijn Profiel",
+    "edit_profile": "Profiel bewerken",
+    "first_name": "Voornaam",
+    "last_name": "Achternaam",
+    "email": "E-mailadres",
+    "email_hint": "E-mailadres kan niet worden gewijzigd",
+    "save": "Wijzigingen opslaan",
+    "saving": "Opslaan...",
+    "success": "Profiel succesvol bijgewerkt!"
+  },
+  "auth": {
+    "login_title": "Welkom terug",
+    "login_subtitle": "Log in op uw account",
+    "register_title": "Account aanmaken",
+    "register_subtitle": "Word lid van de Salty Plank community",
+    "email": "E-mailadres",
+    "password": "Wachtwoord",
+    "first_name": "Voornaam",
+    "last_name": "Achternaam",
+    "login_btn": "Inloggen",
+    "logging_in": "Inloggen...",
+    "register_btn": "Registreren",
+    "creating_account": "Account aanmaken...",
+    "no_account": "Nog geen account?",
+    "register_here": "Registreer hier",
+    "have_account": "Al een account?",
+    "login_here": "Log hier in",
+    "password_hint": "Min. 8 tekens, hoofdletter, cijfer en speciaal teken"
+  },
+  "footer": {
+    "tagline": "Premium surfboards voor elk niveau.",
+    "shop": "Winkel",
+    "all_products": "Alle Producten",
+    "account": "Account",
+    "contact": "Contact"
+  },
+  "admin": {
+    "title": "Beheerpaneel",
+    "add_product": "Product toevoegen",
+    "edit_product": "Product bewerken",
+    "create_product": "Product aanmaken",
+    "save_changes": "Wijzigingen opslaan",
+    "product_form": "Productformulier",
+    "products_overview": "Producten overzicht",
+    "name": "Naam",
+    "description": "Beschrijving",
+    "price": "Prijs (€)",
+    "stock": "Voorraad",
+    "category": "Categorie",
+    "image": "Afbeelding",
+    "actions": "Acties",
+    "edit": "Bewerken",
+    "delete": "Verwijderen"
+  },
+  "common": {
+    "loading": "Laden...",
+    "no_products": "Geen producten gevonden.",
+    "search": "Zoeken",
+    "cancel": "Annuleren",
+    "close": "Sluiten"
+  }
+}

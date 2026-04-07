@@ -23,7 +23,6 @@ public class Order {
     @Column(nullable = false)
     private Double total;
 
-    @Column(nullable = false)
     private String address;
 
     @Column

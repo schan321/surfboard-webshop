@@ -15,7 +15,7 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private Gebruiker gebruiker;
+    private User user;
 
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -24,7 +24,19 @@ public class Order {
     private Double total;
 
     @Column(nullable = false)
-    private String shippingAddress;
+    private String address;
+
+    @Column(nullable = false)
+    private String street;
+
+    @Column(nullable = false)
+    private String postalCode;
+
+    @Column(nullable = false)
+    private String city;
+
+    @Column(nullable = false)
+    private String country;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -36,12 +48,16 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long id, Gebruiker gebruiker, LocalDateTime createdAt, Double total, String shippingAddress, OrderStatus status, List<OrderItem> items) {
+    public Order(Long id, User user, LocalDateTime createdAt, Double total, String address, String street, String postalCode, String city, String country, OrderStatus status, List<OrderItem> items) {
         this.id = id;
-        this.gebruiker = gebruiker;
+        this.user = user;
         this.createdAt = createdAt;
         this.total = total;
-        this.shippingAddress = shippingAddress;
+        this.address = address;
+        this.street = street;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.country = country;
         this.status = status;
         this.items = items;
     }
@@ -54,12 +70,12 @@ public class Order {
         this.id = id;
     }
 
-    public Gebruiker getGebruiker() {
-        return gebruiker;
+    public User getGebruiker() {
+        return user;
     }
 
-    public void setGebruiker(Gebruiker gebruiker) {
-        this.gebruiker = gebruiker;
+    public void setGebruiker(User user) {
+        this.user = user;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -94,12 +110,44 @@ public class Order {
         this.items = items;
     }
 
-    public String getShippingAddress() {
-        return shippingAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
 

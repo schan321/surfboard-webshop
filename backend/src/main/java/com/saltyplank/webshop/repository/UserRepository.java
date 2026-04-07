@@ -1,11 +1,11 @@
 package com.saltyplank.webshop.repository;
-import com.saltyplank.webshop.models.Gebruiker;
+import com.saltyplank.webshop.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface GebruikerRepository extends JpaRepository<Gebruiker, Long> {
-    Optional<Gebruiker> findByEmail(String email);
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email);
     boolean existsByEmail(String email);
 }

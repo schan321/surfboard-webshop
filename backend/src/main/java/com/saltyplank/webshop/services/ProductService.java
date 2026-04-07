@@ -3,13 +3,12 @@ package com.saltyplank.webshop.services;
 import com.saltyplank.webshop.dto.request.ProductRequest;
 import com.saltyplank.webshop.dto.response.CategoryResponse;
 import com.saltyplank.webshop.dto.response.ProductDTO;
+import com.saltyplank.webshop.exceptions.ResourceNotFoundException;
 import com.saltyplank.webshop.models.Category;
 import com.saltyplank.webshop.models.Product;
 import com.saltyplank.webshop.repository.CategoryRepository;
 import com.saltyplank.webshop.repository.ProductRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +34,7 @@ public class ProductService {
     // Get product by id
     public ProductDTO getById(Long id) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
         return toDTO(product);
     }
 
@@ -58,13 +57,17 @@ public class ProductService {
     // Create product (admin)
     public ProductDTO create(ProductRequest request) {
         Category category = categoryRepository.findById(request.getCategoryId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
 
         Product product = new Product();
         product.setName(request.getName());
         product.setDescription(request.getDescription());
         product.setPrice(request.getPrice());
         product.setStock(request.getStock());
+        product.setVolume_liter(request.getVolume_liter());
+        product.setLength_cm(request.getLength_cm());
+        product.setWidth_cm(request.getWidth_cm());
+        product.setFin_system(request.getFin_system());
         product.setCategory(category);
         product.setImageUrl(request.getImageUrl());
 
@@ -75,15 +78,19 @@ public class ProductService {
     // Update product (admin)
     public ProductDTO update(Long id, ProductRequest request) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
         Category category = categoryRepository.findById(request.getCategoryId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
 
         product.setName(request.getName());
         product.setDescription(request.getDescription());
         product.setPrice(request.getPrice());
         product.setStock(request.getStock());
+        product.setVolume_liter(request.getVolume_liter());
+        product.setLength_cm(request.getLength_cm());
+        product.setWidth_cm(request.getWidth_cm());
+        product.setFin_system(request.getFin_system());
         product.setCategory(category);
         product.setImageUrl(request.getImageUrl());
 
@@ -94,7 +101,7 @@ public class ProductService {
     // Delete product (admin)
     public void delete(Long id) {
         if (!productRepository.existsById(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
+            throw new ResourceNotFoundException("Product not found");
         }
         productRepository.deleteById(id);
     }
@@ -111,6 +118,10 @@ public class ProductService {
                 product.getDescription(),
                 product.getPrice(),
                 product.getStock(),
+                product.getVolume_liter(),
+                product.getLength_cm(),
+                product.getWidth_cm(),
+                product.getFin_system(),
                 categoryResponse,
                 product.getImageUrl()
         );

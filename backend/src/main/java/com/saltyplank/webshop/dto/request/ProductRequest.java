@@ -6,26 +6,66 @@ public class ProductRequest {
 
     @NotBlank
     @Size(min = 2, max = 100)
-    private String name;
+    public String name;
 
     @Size(max = 1000)
-    private String description;
+    public String description;
 
     @NotNull
     @DecimalMin("0.0")
     @DecimalMax("9999.99")
-    private Double price;
+    public Double price;
 
     @NotNull
     @Min(0)
     @Max(9999)
-    private Integer stock;
+    public Integer stock;
+
+    public Integer volume_liter;
+
+    public Integer length_cm;
+
+    public Integer width_cm;
+
+    public String fin_system;
 
     @NotNull
-    private Long categoryId;
+    public Long categoryId;
 
     @Size(max = 255)
-    private String imageUrl;
+    public String imageUrl;
+
+    public Integer getVolume_liter() {
+        return volume_liter;
+    }
+
+    public void setVolume_liter(Integer volume_liter) {
+        this.volume_liter = volume_liter;
+    }
+
+    public Integer getLength_cm() {
+        return length_cm;
+    }
+
+    public void setLength_cm(Integer length_cm) {
+        this.length_cm = length_cm;
+    }
+
+    public Integer getWidth_cm() {
+        return width_cm;
+    }
+
+    public void setWidth_cm(Integer width_cm) {
+        this.width_cm = width_cm;
+    }
+
+    public String getFin_system() {
+        return fin_system;
+    }
+
+    public void setFin_system(String fin_system) {
+        this.fin_system = fin_system;
+    }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

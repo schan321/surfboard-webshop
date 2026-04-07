@@ -27,7 +27,12 @@
     "back_to_products": "← Back to products",
     "quantity": "Quantity",
     "decrease_quantity": "Decrease quantity",
-    "increase_quantity": "Increase quantity"
+    "increase_quantity": "Increase quantity",
+    "specs": "Specifications",
+    "volume": "Volume",
+    "length": "Length",
+    "width": "Width",
+    "fin_system": "Fin system"
   },
   "cart": {
     "title": "Your Cart",

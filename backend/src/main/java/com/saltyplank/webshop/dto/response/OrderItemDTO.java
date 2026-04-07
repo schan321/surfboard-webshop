@@ -2,11 +2,11 @@ package com.saltyplank.webshop.dto.response;
 
 public class OrderItemDTO {
 
-    private Long id;
-    private String productName;
-    private Double unitPrice;
-    private Integer quantity;
-    private Double subtotal;
+    public Long id;
+    public String productName;
+    public Double unitPrice;
+    public Integer quantity;
+    public Double subtotal;
 
     public OrderItemDTO(Long id, String productName, Double unitPrice, Integer quantity) {
         this.id = id;

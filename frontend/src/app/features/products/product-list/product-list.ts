@@ -2,7 +2,6 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ProductService } from '../../../core/services/product.service';
-import { CartService } from '../../../core/services/cart.service';
 import { Product } from '../../../core/models/product.model';
 import { Category } from '../../../core/models/category.model';
 import { TranslateModule } from '@ngx-translate/core';
@@ -22,7 +21,6 @@ export class ProductList implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService,
     private router: Router,
     private cdr: ChangeDetectorRef,
   ) {}
@@ -108,22 +106,5 @@ export class ProductList implements OnInit {
     const img = event.target as HTMLImageElement;
     img.onerror = null;
     img.style.display = 'none';
-  }
-
-  protected addToCart(product: Product, event: Event): void {
-    event.stopPropagation();
-    this.cartService.addItem({
-      productId: product.id,
-      productName: product.name,
-      productPrice: product.price,
-      imageUrl: product.imageUrl,
-      quantity: 1,
-    });
-    this.toastMessage = `${product.name} added to cart!`;
-    this.cdr.detectChanges();
-    setTimeout(() => {
-      this.toastMessage = '';
-      this.cdr.detectChanges();
-    }, 3000);
   }
 }

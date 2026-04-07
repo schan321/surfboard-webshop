@@ -3,27 +3,65 @@
     <p class="loading">{{ 'common.loading' | translate }}</p>
   } @else if (product) {
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a routerLink="/">{{ 'nav.products' | translate }}</a>
-      <span aria-hidden="true"> / </span>
-      <span>{{ product.name }}</span>
+      <ol>
+        <li><a routerLink="/">{{ 'nav.products' | translate }}</a></li>
+        <li aria-current="page">{{ product.name }}</li>
+      </ol>
     </nav>
 
     <article class="product-detail">
-      <div class="product-image">
+      <figure class="product-image">
         <img
           [src]="product.imageUrl"
           [alt]="product.name"
           (error)="onImageError($event)"
         />
-      </div>
+      </figure>
 
-      <section class="product-info">
-        <p class="category">{{ product.category.name }}</p>
-        <h1>{{ product.name }}</h1>
-        <p class="price">€{{ product.price.toFixed(2) }}</p>
+      <section class="product-info" [attr.aria-label]="product.name">
+        <header>
+          <p class="category">{{ product.category.name }}</p>
+          <h1>{{ product.name }}</h1>
+          <p class="price" aria-label="{{ 'product.price' | translate }}: €{{ product.price.toFixed(2) }}">
+            €{{ product.price.toFixed(2) }}
+          </p>
+        </header>
+
         <p class="description">{{ product.description }}</p>
 
-        <div class="stock" [class.low]="product.stock < 5">
+        @if (product.volume_liter !== null || product.length_cm !== null || product.width_cm !== null || product.fin_system !== null) {
+          <section class="product-specs" [attr.aria-label]="'product.specs' | translate">
+            <h2>{{ 'product.specs' | translate }}</h2>
+            <dl>
+              @if (product.volume_liter !== null) {
+                <div class="spec-item">
+                  <dt>{{ 'product.volume' | translate }}</dt>
+                  <dd>{{ product.volume_liter }}L</dd>
+                </div>
+              }
+              @if (product.length_cm !== null) {
+                <div class="spec-item">
+                  <dt>{{ 'product.length' | translate }}</dt>
+                  <dd>{{ product.length_cm }}cm</dd>
+                </div>
+              }
+              @if (product.width_cm !== null) {
+                <div class="spec-item">
+                  <dt>{{ 'product.width' | translate }}</dt>
+                  <dd>{{ product.width_cm }}cm</dd>
+                </div>
+              }
+              @if (product.fin_system !== null) {
+                <div class="spec-item">
+                  <dt>{{ 'product.fin_system' | translate }}</dt>
+                  <dd>{{ product.fin_system }}</dd>
+                </div>
+              }
+            </dl>
+          </section>
+        }
+
+        <div class="stock" [class.low]="product.stock < 5" role="status">
           @if (product.stock > 0) {
             <span>✓ {{ 'product.in_stock' | translate: { count: product.stock } }}</span>
           } @else {
@@ -32,11 +70,11 @@
         </div>
 
         @if (product.stock > 0) {
-          <div class="quantity-selector" [attr.aria-label]="'product.quantity' | translate">
+          <div class="quantity-selector" role="group" [attr.aria-label]="'product.quantity' | translate">
             <button
               (click)="decreaseQuantity()"
               [attr.aria-label]="'product.decrease_quantity' | translate">-</button>
-            <span aria-live="polite">{{ quantity }}</span>
+            <span aria-live="polite" aria-atomic="true">{{ quantity }}</span>
             <button
               (click)="increaseQuantity()"
               [attr.aria-label]="'product.increase_quantity' | translate">+</button>
@@ -46,7 +84,8 @@
             class="add-to-cart-btn"
             (click)="addToCart()"
             [class.added]="added"
-            aria-live="polite">
+            aria-live="polite"
+            aria-atomic="true">
             {{ added ? ('product.added_to_cart' | translate) : ('product.add_to_cart' | translate) }}
           </button>
         }

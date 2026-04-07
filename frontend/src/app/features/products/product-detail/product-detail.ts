@@ -28,16 +28,13 @@ export class ProductDetail implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.productService.getById(Number(id)).subscribe({
+      this.productService.getById(+id).subscribe({
         next: (product) => {
           this.product = product;
           this.loading = false;
           this.cdr.detectChanges();
         },
-        error: () => {
-          this.loading = false;
-          this.router.navigate(['/']);
-        },
+        error: () => (this.loading = false),
       });
     }
   }

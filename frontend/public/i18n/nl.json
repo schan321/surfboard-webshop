@@ -27,7 +27,12 @@
     "back_to_products": "← Terug naar producten",
     "quantity": "Aantal",
     "decrease_quantity": "Aantal verminderen",
-    "increase_quantity": "Aantal verhogen"
+    "increase_quantity": "Aantal verhogen",
+    "specs": "Specificaties",
+    "volume": "Volume",
+    "length": "Lengte",
+    "width": "Breedte",
+    "fin_system": "Fin systeem"
   },
   "cart": {
     "title": "Uw Winkelwagen",

@@ -19,8 +19,4 @@ export class OrderService {
   getMyOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(this.apiUrl);
   }
-
-  getById(id: number): Observable<Order> {
-    return this.http.get<Order>(`${this.apiUrl}/${id}`);
-  }
 }

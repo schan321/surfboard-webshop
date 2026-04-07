@@ -1,22 +1,32 @@
 package com.saltyplank.webshop.dto.response;
 
+import jakarta.persistence.Column;
+
 public class ProductDTO {
 
-    private Long id;
-    private String name;
-    private String description;
-    private Double price;
-    private Integer stock;
-    private CategoryResponse category;
-    private String imageUrl;
+    public Long id;
+    public String name;
+    public String description;
+    public Double price;
+    public Integer stock;
+    public Integer volume_liter;
+    public Integer length_cm;
+    public Integer width_cm;
+    public String fin_system;
+    public CategoryResponse category;
+    public String imageUrl;
 
-    public ProductDTO(Long id, String name, String description, Double price,
-                      Integer stock, CategoryResponse category, String imageUrl) {
+
+    public ProductDTO(Long id, String name, String description, Double price, Integer stock, Integer volume_liter, Integer length_cm, Integer width_cm, String fin_system, CategoryResponse category, String imageUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
+        this.volume_liter = volume_liter;
+        this.length_cm = length_cm;
+        this.width_cm = width_cm;
+        this.fin_system = fin_system;
         this.category = category;
         this.imageUrl = imageUrl;
     }

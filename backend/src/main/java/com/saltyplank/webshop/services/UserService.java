@@ -1,11 +1,11 @@
 package com.saltyplank.webshop.services;
 
 import com.saltyplank.webshop.dto.request.RegisterRequest;
-import com.saltyplank.webshop.dto.response.GebruikerDTO;
-import com.saltyplank.webshop.models.Gebruiker;
-import com.saltyplank.webshop.repository.GebruikerRepository;
+import com.saltyplank.webshop.dto.response.UserDTO;
+import com.saltyplank.webshop.exceptions.ResourceNotFoundException;
+import com.saltyplank.webshop.models.User;
+import com.saltyplank.webshop.repository.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,16 +15,16 @@ import java.util.Collections;
 @Service
 public class UserService implements UserDetailsService {
 
-    private final GebruikerRepository gebruikerRepository;
+    private final UserRepository userRepository;
 
-    public UserService(GebruikerRepository gebruikerRepository) {
-        this.gebruikerRepository = gebruikerRepository;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return gebruikerRepository.findByEmail(email)
-                .map(gebruiker -> new User(
+        return userRepository.findByEmail(email)
+                .map(gebruiker -> new org.springframework.security.core.userdetails.User(
                         gebruiker.getEmail(),
                         gebruiker.getPassword(),
                         Collections.singletonList(
@@ -34,33 +34,33 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
     }
 
-    public GebruikerDTO getProfile(String email) {
-        Gebruiker gebruiker = gebruikerRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return new GebruikerDTO(
-                gebruiker.getId(),
-                gebruiker.getFirstName(),
-                gebruiker.getLastName(),
-                gebruiker.getEmail(),
-                gebruiker.getRole().name()
+    public UserDTO getProfile(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        return new UserDTO(
+                user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getRole().name()
         );
     }
 
-    public GebruikerDTO updateProfile(String email, RegisterRequest request) {
-        Gebruiker gebruiker = gebruikerRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    public UserDTO updateProfile(String email, RegisterRequest request) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
-        gebruiker.setFirstName(request.getFirstName());
-        gebruiker.setLastName(request.getLastName());
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
 
-        gebruikerRepository.save(gebruiker);
+        userRepository.save(user);
 
-        return new GebruikerDTO(
-                gebruiker.getId(),
-                gebruiker.getFirstName(),
-                gebruiker.getLastName(),
-                gebruiker.getEmail(),
-                gebruiker.getRole().name()
+        return new UserDTO(
+                user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getRole().name()
         );
     }
 }

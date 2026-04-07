@@ -6,8 +6,8 @@ import com.saltyplank.webshop.dto.request.LoginRequest;
 import com.saltyplank.webshop.dto.request.RegisterRequest;
 import com.saltyplank.webshop.dto.response.AuthResponse;
 import com.saltyplank.webshop.enums.Role;
-import com.saltyplank.webshop.models.Gebruiker;
-import com.saltyplank.webshop.repository.GebruikerRepository;
+import com.saltyplank.webshop.models.User;
+import com.saltyplank.webshop.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,16 +23,16 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    private final GebruikerRepository gebruikerRepository;
+    private final UserRepository userRepository;
     private final JWTUtil jwtUtil;
     private final AuthenticationManager authManager;
     private final PasswordEncoder passwordEncoder;
     private final CredentialValidator credentialValidator;
 
-    public AuthController(GebruikerRepository gebruikerRepository, JWTUtil jwtUtil,
+    public AuthController(UserRepository userRepository, JWTUtil jwtUtil,
                           AuthenticationManager authManager, PasswordEncoder passwordEncoder,
                           CredentialValidator credentialValidator) {
-        this.gebruikerRepository = gebruikerRepository;
+        this.userRepository = userRepository;
         this.jwtUtil = jwtUtil;
         this.authManager = authManager;
         this.passwordEncoder = passwordEncoder;
@@ -53,23 +53,23 @@ public class AuthController {
             );
         }
 
-        if (gebruikerRepository.existsByEmail(request.getEmail())) {
+        if (userRepository.existsByEmail(request.getEmail())) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Email already in use"
             );
         }
 
-        Gebruiker gebruiker = new Gebruiker();
-        gebruiker.setFirstName(request.getFirstName());
-        gebruiker.setLastName(request.getLastName());
-        gebruiker.setEmail(request.getEmail());
-        gebruiker.setPassword(passwordEncoder.encode(request.getPassword()));
-        gebruiker.setRole(Role.USER);
+        User user = new User();
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setEmail(request.getEmail());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setRole(Role.USER);
 
-        gebruikerRepository.save(gebruiker);
+        userRepository.save(user);
 
-        String token = jwtUtil.generateToken(gebruiker.getEmail());
-        return ResponseEntity.ok(new AuthResponse(token, gebruiker.getRole().name()));
+        String token = jwtUtil.generateToken(user.getEmail());
+        return ResponseEntity.ok(new AuthResponse(token, user.getRole().name()));
     }
 
     @PostMapping("/login")
@@ -79,11 +79,11 @@ public class AuthController {
                     new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
             );
 
-            Gebruiker gebruiker = gebruikerRepository.findByEmail(request.getEmail())
+            User user = userRepository.findByEmail(request.getEmail())
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
 
-            String token = jwtUtil.generateToken(gebruiker.getEmail());
-            return ResponseEntity.ok(new AuthResponse(token, gebruiker.getRole().name()));
+            String token = jwtUtil.generateToken(user.getEmail());
+            return ResponseEntity.ok(new AuthResponse(token, user.getRole().name()));
 
         } catch (AuthenticationException e) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Invalid credentials");

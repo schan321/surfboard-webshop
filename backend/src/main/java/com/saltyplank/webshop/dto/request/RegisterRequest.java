@@ -8,19 +8,19 @@ public class RegisterRequest {
 
     @NotBlank
     @Size(min = 2, max = 50)
-    private String firstName;
+    public String firstName;
 
     @NotBlank
     @Size(min = 2, max = 50)
-    private String lastName;
+    public String lastName;
 
     @Email
     @NotBlank
     @Size(max = 100)
-    private String email;
+    public String email;
 
     @NotBlank
-    private String password;
+    public String password;
 
     public String getFirstName() { return firstName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }

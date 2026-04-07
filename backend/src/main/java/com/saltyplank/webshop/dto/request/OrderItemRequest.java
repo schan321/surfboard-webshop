@@ -7,12 +7,12 @@ import jakarta.validation.constraints.NotNull;
 public class OrderItemRequest {
 
     @NotNull
-    private Long productId;
+    public Long productId;
 
     @NotNull
     @Min(1)
     @Max(99)
-    private Integer quantity;
+    public Integer quantity;
 
     public Long getProductId() { return productId; }
     public void setProductId(Long productId) { this.productId = productId; }

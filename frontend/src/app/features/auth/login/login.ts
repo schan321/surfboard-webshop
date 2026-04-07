@@ -11,17 +11,17 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './login.scss',
 })
 export class Login {
-  email = '';
-  password = '';
-  error = '';
-  loading = false;
+  protected email = '';
+  protected password = '';
+  protected error = '';
+  protected loading = false;
 
   constructor(
     private authService: AuthService,
     private router: Router,
   ) {}
 
-  onSubmit(): void {
+  protected onSubmit(): void {
     this.loading = true;
     this.error = '';
 

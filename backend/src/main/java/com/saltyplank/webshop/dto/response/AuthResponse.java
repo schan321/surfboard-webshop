@@ -2,8 +2,8 @@ package com.saltyplank.webshop.dto.response;
 
 public class AuthResponse {
 
-    private String token;
-    private String role;
+    public String token;
+    public String role;
 
     public AuthResponse(String token, String role) {
         this.token = token;

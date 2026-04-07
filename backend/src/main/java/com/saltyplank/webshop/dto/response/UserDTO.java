@@ -1,14 +1,14 @@
 package com.saltyplank.webshop.dto.response;
 
-public class GebruikerDTO {
+public class UserDTO {
 
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String role;
+    public Long id;
+    public String firstName;
+    public String lastName;
+    public String email;
+    public String role;
 
-    public GebruikerDTO(Long id, String firstName, String lastName, String email, String role) {
+    public UserDTO(Long id, String firstName, String lastName, String email, String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

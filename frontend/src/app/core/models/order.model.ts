@@ -5,6 +5,9 @@ export interface Order {
   createdAt: string;
   total: number;
   status: string;
-  shippingAddress: string;
+  street: string;
+  postalCode: string;
+  city: string;
+  country: string;
   items: OrderItem[];
 }

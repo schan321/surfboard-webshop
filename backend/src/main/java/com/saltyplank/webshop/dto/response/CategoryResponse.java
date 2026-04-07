@@ -2,8 +2,8 @@ package com.saltyplank.webshop.dto.response;
 
 public class CategoryResponse {
 
-    private Long id;
-    private String name;
+    public Long id;
+    public String name;
 
     public CategoryResponse(Long id, String name) {
         this.id = id;

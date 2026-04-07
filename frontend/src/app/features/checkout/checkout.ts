@@ -14,9 +14,6 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class Checkout implements OnInit {
   protected cartItems: CartItem[] = [];
-  protected firstName = '';
-  protected lastName = '';
-  protected email = '';
   protected street = '';
   protected postalCode = '';
   protected city = '';
@@ -44,7 +41,7 @@ export class Checkout implements OnInit {
   }
 
   protected placeOrder(): void {
-    if (!this.street || !this.city || !this.postalCode) {
+    if (!this.street || !this.city || !this.postalCode || !this.country) {
       this.error = 'Please fill in all required fields';
       return;
     }
@@ -52,10 +49,11 @@ export class Checkout implements OnInit {
     this.loading = true;
     this.error = '';
 
-    const shippingAddress = `${this.firstName} ${this.lastName}, ${this.street}, ${this.postalCode} ${this.city}, ${this.country}`;
-
     const orderRequest = {
-      shippingAddress: shippingAddress,
+      street: this.street,
+      postalCode: this.postalCode,
+      city: this.city,
+      country: this.country,
       items: this.cartItems.map((item) => ({
         productId: item.productId,
         quantity: item.quantity,

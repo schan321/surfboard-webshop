@@ -26,16 +26,16 @@ public class Order {
     @Column(nullable = false)
     private String address;
 
-    @Column(nullable = false)
+    @Column
     private String street;
 
-    @Column(nullable = false)
+    @Column
     private String postalCode;
 
-    @Column(nullable = false)
+    @Column
     private String city;
 
-    @Column(nullable = false)
+    @Column
     private String country;
 
     @Enumerated(EnumType.STRING)
